@@ -53,7 +53,7 @@ public class SystemController extends HttpServlet {
 		//redirect to login page
 	}
 
-	private void Login(HttpServletRequest request, HttpServletResponse response) {
+	private void Login(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		// TODO Auto-generated method stub
 
 		int id = Integer.parseInt(request.getParameter("id"));
@@ -63,9 +63,11 @@ public class SystemController extends HttpServlet {
 		
 		if(user == null) {
 			//send invalid id message 
+			response.sendRedirect("");
 		}
 		else if(!user.getPassword().equals(password)) {
 			//send invalid password message
+			response.sendRedirect("");
 		}
 		else {
 			request.getSession().setAttribute("id", id);
